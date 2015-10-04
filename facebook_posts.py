@@ -1,26 +1,30 @@
 import requests
+import sys
 import datetime
 from config import TOKEN
 from config import PAGE_ID
+LAST_POST = 0;
 my_headers = {'Authorization': 'Bearer ' + TOKEN, 'Host': 'graph.facebook.com'}
 count = 0
-r = requests.get('https://graph.facebook.com/' + PAGE_ID + '/feed', headers=my_headers)
-
-r = requests.get('https://graph.facebook.com/' + PAGE_ID + '/feed', headers=my_headers)
+#get all the posts made by the page on Facebook
+r = requests.get('https://graph.facebook.com/' + PAGE_ID + '/posts', headers=my_headers)
 info = r.json()
-while 'next' in info['paging'].keys():
-  print info
+stop = False
+while 'next' in info['paging'].keys() and not stop:
   if 'data' in info.keys():
     for post in info['data']:
-      #print post['id']
-      #print  post['created_time']
+      if post['id'] == LAST_POST:
+        stop = True
+        break
       if 'story' not in post.keys() and 'message' in post.keys():
-        a=1
-        #print post['message']
+        #insert post into database 
+        ''' post['message']
+            post['id']
+            post['created_time']'''
   info = requests.get(info['paging']['next'], headers=my_headers).json()
   count += 1
   print count
       
 
-
-  
+def exit():
+  sys.exit();
