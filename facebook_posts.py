@@ -3,6 +3,7 @@ import sys
 import datetime
 from config import TOKEN
 from config import PAGE_ID
+from os import getenv
 LAST_POST = 0;
 my_headers = {'Authorization': 'Bearer ' + TOKEN, 'Host': 'graph.facebook.com'}
 count = 0
@@ -26,5 +27,3 @@ while 'next' in info['paging'].keys() and not stop:
   print count
       
 
-def exit():
-  sys.exit();
