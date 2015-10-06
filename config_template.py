@@ -1,6 +1,13 @@
 # This file holds site- and system-specific configuration information that
-# should not be stored in the GitHub repository.  For each item, replace the
-# string xxxxx with the correct information.
+# should not be stored in the GitHub repository.  Replace each xxxxx with
+# the correct information.
+
+# Approximate limit on number of posts to upload in one pass.  Set to 0 for
+# no limit.  This is used for testing, but should be set to zero for
+# production.  This is approximate as posts are received from Facebook in
+# batches, and all posts in each batch are uploaded even if that goes over
+# the limit.
+MAX_POSTS = 0
 
 # Add the Facebook app token and page id for accessing the Facebook page.
 # Facebook app token (not the secret):
@@ -20,7 +27,7 @@ SQL_SERVER_DRIVER = "xxxxx"
 
 # Add the connection information for the SQL Server database.
 # Server name:
-SQL_SERVER_NAME = "xxxxx.database.windows.net"
+SERVER_NAME = "xxxxx.database.windows.net"
 # Database ID:
 DATABASE_ID = "xxxxx"
 # The database user requires external write access to the database.  The name
