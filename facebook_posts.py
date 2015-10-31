@@ -62,7 +62,7 @@ while not stop:
         )
         values_list.append(values)
         num_posts = num_posts + 1
-  if (config.MAX_POSTS > 0 and num_posts <= config.MAX_POSTS) and not stop and 'paging' in info and 'next' in info['paging']:
+  if not stop and 'paging' in info and 'next' in info['paging']:
     info = requests.get(info['paging']['next'], headers=my_headers).json()
   else:
     break
