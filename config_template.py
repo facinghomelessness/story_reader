@@ -2,13 +2,6 @@
 # should not be stored in the GitHub repository.  Replace each xxxxx with
 # the correct information.
 
-# Approximate limit on number of posts to upload in one pass.  Set to 0 for
-# no limit.  This is used for testing, but should be set to zero for
-# production.  This is approximate as posts are received from Facebook in
-# batches, and all posts in each batch are uploaded even if that goes over
-# the limit.
-MAX_POSTS = 0
-
 # Add the Facebook app token and page id for accessing the Facebook page.
 # Facebook app token (not the secret):
 TOKEN = "xxxxx"
@@ -36,3 +29,10 @@ DATABASE_ID = "xxxxx"
 DATABASE_USER_ID = "xxxxx"
 # Database user password:
 DATABASE_USER_PASSWORD = "xxxxx"
+# Posts table name:
+# There is a staging table that can be used during testing, or if we need to
+# upload posts that may be already present in the real table.
+# real:
+DATABASE_POSTS_TABLE = "Posts"
+# staging:
+# DATABASE_POSTS_TABLE = "Posts_Staging"
