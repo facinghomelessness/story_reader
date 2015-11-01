@@ -73,7 +73,8 @@ if len(values_list) > 0:
   connection_string = 'DRIVER={%s};SERVER={%s};DATABASE={%s};UID={%s};PWD={%s}' % (config.SQL_SERVER_DRIVER, config.SERVER_NAME, config.DATABASE_ID, config.DATABASE_USER_ID, config.DATABASE_USER_PASSWORD)
   cnxn = pyodbc.connect(connection_string)
   cursor = cnxn.cursor()
-  cursor.executemany("insert into Posts(PostID, PostDate, PostText) values (?, ?, ?)", values_list)
+  # Use either the real or staging table name.
+  cursor.executemany("insert into %s(PostID, PostDate, PostText) values (?, ?, ?)" % config.DATABASE_POSTS_TABLE, values_list)
   cnxn.commit()
 
   # Update the last post id.
