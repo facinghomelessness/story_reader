@@ -77,8 +77,9 @@ if len(values_list) > 0:
   cursor.executemany("insert into %s(PostID, PostDate, PostText) values (?, ?, ?)" % config.DATABASE_POSTS_TABLE, values_list)
   cnxn.commit()
 
-  # Update the last post id.
-  status_file = open("status.py", "w")
-  status_file.truncate()
-  status_file.write("LAST_POST = %s\n" % new_last_post)
-  status_file.close()
+# Update the last post id.  Do this even if we did not find any posts to write,
+# as we may have seen some posts with only links, that we did not upload.
+status_file = open("status.py", "w")
+status_file.truncate()
+status_file.write("LAST_POST = %s\n" % new_last_post)
+status_file.close()
